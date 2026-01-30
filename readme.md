@@ -20,15 +20,17 @@ after video
 
 The settings are saved using MelonLoader's preferences framework, inside the default `UserData/MelonPreferences.cfg` file.
 Running the game with the mod installed should create the following section in the file:
-<!-- TODO commented version -->
 ```toml
 [Bnfour_AppearanceMemory]
+# Index of the background image to use, 1–8.
 Skin = 1
+# Index of the tray color to use, 1–5.
 Tray = 1
 ```
 
-`Skin` can be set to values 1 through 8; `Tray` to 1 through 5 — matching the display order, left to right.
-<!-- TODO consider image w/numbers added? -->
+`Skin` can be set to values 1 through 8; `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:
+<!-- TODO is it needed though? -->
+![text tool in gimp is still broken -- that's why i do these freehand](readme-images/skin-tray-indexing.webp)
 
 # Installation
 just copypaste LULE
