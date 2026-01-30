@@ -1,5 +1,7 @@
 using MelonLoader;
 
+using Bnfour.MoeJigsawMods.AppearanceMemory.Validators;
+
 namespace Bnfour.MoeJigsawMods.AppearanceMemory;
 
 public class AppearanceMemoryMod : MelonMod
@@ -7,8 +9,6 @@ public class AppearanceMemoryMod : MelonMod
     private MelonPreferences_Category _category;
     private MelonPreferences_Entry<int> _skinId;
     private MelonPreferences_Entry<int> _trayId;
-
-    // TODO constraints? 1–8 for skin, 1–5 for tray
 
     internal int Skin
     {
@@ -26,7 +26,7 @@ public class AppearanceMemoryMod : MelonMod
     {
         // TODO descriptions
         _category = MelonPreferences.CreateCategory("Bnfour_AppearanceMemory");
-        _skinId = _category.CreateEntry("Skin", 1);
-        _trayId = _category.CreateEntry("Tray", 1);
+        _skinId = _category.CreateEntry("Skin", 1, validator: new SkinIdValidator());
+        _trayId = _category.CreateEntry("Tray", 1, validator: new TrayIdValidator());
     }
 }
