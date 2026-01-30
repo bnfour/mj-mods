@@ -24,9 +24,10 @@ public class AppearanceMemoryMod : MelonMod
 
     public override void OnInitializeMelon()
     {
-        // TODO descriptions
         _category = MelonPreferences.CreateCategory("Bnfour_AppearanceMemory");
-        _skinId = _category.CreateEntry("Skin", 1, validator: new SkinIdValidator());
-        _trayId = _category.CreateEntry("Tray", 1, validator: new TrayIdValidator());
+        _skinId = _category.CreateEntry("Skin", 1, "Skin ID", "Index of the background image to use, 1–8.",
+            validator: new SkinIdValidator());
+        _trayId = _category.CreateEntry("Tray", 1, "Tray ID", "Index of the tray color to use, 1–5.",
+            validator: new TrayIdValidator());
     }
 }
