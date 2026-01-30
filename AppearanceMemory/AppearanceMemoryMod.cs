@@ -1,6 +1,6 @@
 using MelonLoader;
 
-using Bnfour.MoeJigsawMods.AppearanceMemory.Validators;
+using MelonLoader.Preferences;
 
 namespace Bnfour.MoeJigsawMods.AppearanceMemory;
 
@@ -26,8 +26,8 @@ public class AppearanceMemoryMod : MelonMod
     {
         _category = MelonPreferences.CreateCategory("Bnfour_AppearanceMemory");
         _skinId = _category.CreateEntry("Skin", 1, "Skin ID", "Index of the background image to use, 1–8.",
-            validator: new SkinIdValidator());
+            validator: new ValueRange<int>(1, 8));
         _trayId = _category.CreateEntry("Tray", 1, "Tray ID", "Index of the tray color to use, 1–5.",
-            validator: new TrayIdValidator());
+            validator: new ValueRange<int>(1, 5));
     }
 }
