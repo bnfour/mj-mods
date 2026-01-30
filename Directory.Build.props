@@ -6,8 +6,6 @@
     <PlatformTarget>x86</PlatformTarget>
 
     <LangVersion>latest</LangVersion>
-    <!-- TODO do i even want it on with the mods' lifecycle? -->
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <!-- The following disables copying referenced dlls to the output folder -->
