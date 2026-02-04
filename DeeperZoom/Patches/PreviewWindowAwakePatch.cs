@@ -1,4 +1,5 @@
 using HarmonyLib;
+using MelonLoader;
 
 namespace Bnfour.MoeJigsawMods.DeeperZoom.Patches;
 
@@ -11,7 +12,10 @@ public class PreviewWindowAwakePatch
 {
     internal static void Postfix(ref int ___Scale)
     {
-        // TODO if default of 6 is not within the bounds from prefs,
-        // set it to the lowest probably
+        var mod = Melon<DeeperZoomMod>.Instance;
+        if (___Scale < mod.PreviewZoomMin || ___Scale > mod.PreviewZoomMax)
+        {
+            ___Scale = mod.PreviewZoomMin;
+        }
     }
 }
