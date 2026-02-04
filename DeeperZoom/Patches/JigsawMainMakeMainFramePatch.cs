@@ -1,6 +1,7 @@
 using HarmonyLib;
 
 using Jigsaw;
+using MelonLoader;
 
 namespace Bnfour.MoeJigsawMods.DeeperZoom.Patches;
 
@@ -12,8 +13,6 @@ public class JigsawMainMakeMainFramePatch
 {
     internal static void Postfix(ref float ___matScaleMax)
     {
-        // TODO load from preferences, at least 1 to match vanilla
-        var newMatScaleMax = 2f;
-        ___matScaleMax = newMatScaleMax;
+        ___matScaleMax = Melon<DeeperZoomMod>.Instance.MatMaxScale;
     }
 }
