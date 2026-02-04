@@ -5,6 +5,8 @@ using HarmonyLib;
 
 using Jigsaw;
 
+using Bnfour.MoeJigsawMods.DeeperZoom.Utilities;
+
 namespace Bnfour.MoeJigsawMods.DeeperZoom.Patches;
 
 /// <summary>
@@ -16,12 +18,6 @@ public class JigsawMainUpdatePatch
 {
     internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        // TODO load from prefs, at least 2 for min/max, more for in-between steps
-        // TODO if i recall correctly, the prefs are not available when transpiler runs
-        // if really so, replace with a call to a helper method
-        // that runs when prefs are available and just returns the value (to the stack)?
-        int zoomSteps = 20;
-
         // the vanilla zoom steps are labeled 1–10,
         // the actual zoom level is calculated by providing (currentStep - 1)/(maxStep - 1)
         // to lerp between minimum and maximum scales set elsewhere
@@ -33,15 +29,15 @@ public class JigsawMainUpdatePatch
             if (instruction.opcode == OpCodes.Ldc_I4_S
                 && instruction.operand is sbyte i && i == 10)
             {
-                yield return new CodeInstruction(OpCodes.Ldc_I4_S, (sbyte)zoomSteps);
+                yield return CodeInstruction.Call(typeof(TranspilerPreferencesProvider), nameof(TranspilerPreferencesProvider.ZoomSteps));
             }
             // used to get 0–1 ratio to use with lerp
             // (9 is maximum value - 1, so that zoom level 1 is ratio (1 - 1)/(10 - 1) = 0 => smallest scale)
             else if (instruction.opcode == OpCodes.Ldc_R4
-                // fuzzy comparison just in case, _seems_ to work just as fine with simple ==
+                // fuzzy comparison just in case, _seems_ to work just as fine with simple ==, but better safe than sorry
                 && instruction.operand is float f && Math.Abs(9f - f) <= 0.01f)
             {
-                yield return new CodeInstruction(OpCodes.Ldc_R4, (float)(zoomSteps - 1));
+                yield return CodeInstruction.Call(typeof(TranspilerPreferencesProvider), nameof(TranspilerPreferencesProvider.ZoomStepsMinusOne));
             }
             else
             {
