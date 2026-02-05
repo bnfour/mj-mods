@@ -6,9 +6,14 @@ Unofficial quality of life modifications for the hit video game Moe Jigsaw using
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
+- [Pan anywhere](#pan-anywhere) — enables panning on mouse wheel clicks
 
-## Mod 1
-the thing to save bg/tray settings i guess?
+## Pan anywhere
+This small mod enables dedicated pan mode when the mouse wheel is held, regardless of anything that might be under the cursor.
+
+Can be combined with vanilla pan on left mouse button for panning twice as fast!
+
+This also probably breaks the input replay feature (that I've never encountered, might be debug-only?).
 
 # Installation
 just copypaste LULE
