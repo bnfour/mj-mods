@@ -69,7 +69,7 @@ internal static class FreezeManager
         Debug.Assert(!lockedPieces.Contains(pieceName), "locking a locked piece");
         lockedPieces.Add(pieceName);
 
-        foreach (int i in Enum.GetValues(typeof(Model.PLACE)))
+        foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
             if (model.Link[i] != null && !lockedPieces.Contains(model.Link[i].gameObject.name))
             {
@@ -85,7 +85,7 @@ internal static class FreezeManager
         Debug.Assert(lockedPieces.Contains(pieceName), "unlocking non-locked piece");
         lockedPieces.Remove(pieceName);
 
-        foreach (int i in Enum.GetValues(typeof(Model.PLACE)))
+        foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
             if (model.Link[i] != null && lockedPieces.Contains(model.Link[i].gameObject.name))
             {
@@ -107,7 +107,7 @@ internal static class FreezeManager
 
         alreadyChecked.Add(pieceName);
 
-        foreach (int i in Enum.GetValues(typeof(Model.PLACE)))
+        foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
             if (model.Link[i] != null && !alreadyChecked.Contains(model.Link[i].gameObject.name))
             {
