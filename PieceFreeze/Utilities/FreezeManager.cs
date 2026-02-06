@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using MelonLoader;
+
 using Jigsaw.Piece;
 
 namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
@@ -20,8 +22,30 @@ internal static class FreezeManager
     /// <returns></returns>
     internal static bool IsFrozen(Model model, bool isLeftMouseButton)
     {
-        // do nothing for now
-        return false;
+        // only handle pieces lying on the field
+        if (model?.Place != Model.PLACE.MAIN)
+        {
+            return false;
+        }
+
+        var mod = Melon<PieceFreezeMod>.Instance;
+
+        // if clicked with a modifier, toggle the lock state
+        if (isLeftMouseButton && mod.FreezeModifierDown)
+        {
+            if (mod.LockedPieces.Contains(model.gameObject.name))
+            {
+                Unlock(mod.LockedPieces, model);
+            }
+            else
+            {
+                Lock(mod.LockedPieces, model);
+            }
+            // still disallow usual interaction
+            return true;
+        }
+
+        return mod.LockedPieces.Contains(model.gameObject.name);
     }
 
     private static void Lock(HashSet<string> lockedPieces, Model model)
