@@ -100,8 +100,7 @@ internal static class FreezeManager
 
         var pieceName = model.gameObject.name;
 
-        var result = lockedPieces.Contains(pieceName);
-        if (result)
+        if (lockedPieces.Contains(pieceName))
         {
             return true;
         }
@@ -112,11 +111,12 @@ internal static class FreezeManager
         {
             if (model.Link[i] != null && !alreadyChecked.Contains(model.Link[i].gameObject.name))
             {
-                // TODO consider short-circuiting if the first iteration returns true, for example
-                result |= IsConnectedToAnyLockedNow(lockedPieces, model.Link[i], alreadyChecked);
+                if (IsConnectedToAnyLockedNow(lockedPieces, model.Link[i], alreadyChecked))
+                {
+                    return true;
+                }
             }
         }
-
-        return result;
+        return false;
     }
 }
