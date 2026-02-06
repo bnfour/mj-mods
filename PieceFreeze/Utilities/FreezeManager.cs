@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using Jigsaw.Piece;
 
 namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
@@ -18,19 +18,41 @@ internal static class FreezeManager
     /// (as opposed to right mouse button or A/D/arrows for rotating).
     /// Used to toggle the state on left-clicking with the modifier held.</param>
     /// <returns></returns>
-    internal static bool IsFrozen(Model m, bool isLeftMouseButton)
+    internal static bool IsFrozen(Model model, bool isLeftMouseButton)
     {
         // do nothing for now
         return false;
     }
 
-    private static void Lock(HashSet<string> lockedPieces, Model m)
+    private static void Lock(HashSet<string> lockedPieces, Model model)
     {
-        throw new NotImplementedException("soon™");
+        var pieceName = model.gameObject.name;
+
+        Debug.Assert(!lockedPieces.Contains(pieceName), "locking a locked piece");
+        lockedPieces.Add(pieceName);
+
+        foreach (int i in Enum.GetValues(typeof(Model.PLACE)))
+        {
+            if (model.Link[i] != null && !lockedPieces.Contains(model.Link[i].gameObject.name))
+            {
+                Lock(lockedPieces, model.Link[i]);
+            }
+        }
     }
 
-    private static void Unlock(HashSet<string> lockedPieces, Model m)
+    private static void Unlock(HashSet<string> lockedPieces, Model model)
     {
-        throw new NotImplementedException("soon™");
+        var pieceName = model.gameObject.name;
+
+        Debug.Assert(lockedPieces.Contains(pieceName), "unlocking non-locked piece");
+        lockedPieces.Remove(pieceName);
+
+        foreach (int i in Enum.GetValues(typeof(Model.PLACE)))
+        {
+            if (model.Link[i] != null && lockedPieces.Contains(model.Link[i].gameObject.name))
+            {
+                Unlock(lockedPieces, model.Link[i]);
+            }
+        }
     }
 }
