@@ -33,19 +33,19 @@ internal static class FreezeManager
         // if clicked with a modifier, toggle the lock state
         if (isLeftMouseButton && mod.FreezeModifierDown)
         {
-            if (mod.LockedPieces.Contains(model.gameObject.name))
+            if (mod.LockedData.Current.Contains(model.gameObject.name))
             {
-                Unlock(mod.LockedPieces, model);
+                Unlock(mod.LockedData.Current, model);
             }
             else
             {
-                Lock(mod.LockedPieces, model);
+                Lock(mod.LockedData.Current, model);
             }
             // still disallow usual interaction
             return true;
         }
 
-        return mod.LockedPieces.Contains(model.gameObject.name);
+        return mod.LockedData.Current.Contains(model.gameObject.name);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ internal static class FreezeManager
     /// <param name="model">Piece to process.</param>
     internal static void ProcessDocking(Model model)
     {
-        var lockedPieces = Melon<PieceFreezeMod>.Instance.LockedPieces;
+        var lockedPieces = Melon<PieceFreezeMod>.Instance.LockedData.Current;
         if (IsConnectedToAnyLockedNow(lockedPieces, model))
         {
             Lock(lockedPieces, model);

@@ -1,22 +1,31 @@
-﻿using System.Collections.Generic;
-using MelonLoader;
+﻿using MelonLoader;
 using UnityEngine;
+
+using Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
 
 namespace Bnfour.MoeJigsawMods.PieceFreeze;
 
 public class PieceFreezeMod : MelonMod
 {
-    // TODO replace with something that supports storing data for multiple puzzles and file save/load
-    // stores piece names as generated in vanilla, piece_XX_YY
-    internal HashSet<string> LockedPieces { get; } = new();
+    internal DataStorage LockedData { get; } = new();
 
     internal bool FreezeModifierDown { get; private set; }
 
     // TODO make configurable?
     private const KeyCode ModifierKey = KeyCode.LeftAlt;
 
+    public override void OnInitializeMelon()
+    {
+        LockedData.Load();
+    }
+
     public override void OnUpdate()
     {
         FreezeModifierDown = (FreezeModifierDown || Input.GetKeyDown(ModifierKey)) && !Input.GetKeyUp(ModifierKey);
+    }
+
+    public override void OnApplicationQuit()
+    {
+        LockedData.Save();
     }
 }
