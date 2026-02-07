@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using MelonLoader;
 using UnityEngine;
 
 namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
@@ -55,16 +56,29 @@ internal class DataStorage
 
     internal void Save()
     {
-        // TODO try section?
-        File.WriteAllText(FullFilePath, Serialize());
+        if (_backend.Count > 0)
+        {
+            File.WriteAllText(FullFilePath, Serialize());
+        }
+        else if (File.Exists(FullFilePath))
+        {
+            File.Delete(FullFilePath);
+        }
     }
 
     internal void Load()
     {
         if (File.Exists(FullFilePath))
         {
-            // TODO try section
-            _backend = Deserialize(File.ReadAllText(FullFilePath));
+            try
+            {
+                _backend = Deserialize(File.ReadAllText(FullFilePath));
+            }
+            catch
+            {
+                Melon<PieceFreezeMod>.Logger.Warning("Unable to load save state, the file will be overwritten on exit.");
+                _backend = new();
+            }
         }
         else
         {
@@ -94,7 +108,7 @@ internal class DataStorage
 
     private Dictionary<string, HashSet<string>> Deserialize(string input)
     {
-        // TODO validate string values?
+        // TODO validate string values? custom exceptions?
         Dictionary<string, HashSet<string>> result = new();
 
         var lines = input.Split('\n');
