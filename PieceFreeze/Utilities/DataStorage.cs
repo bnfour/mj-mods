@@ -145,7 +145,7 @@ internal class DataStorage
             }
 
             var key = keySplit.First();
-            if (string.IsNullOrEmpty(key) || !PieceNameRegex.IsMatch(key))
+            if (string.IsNullOrEmpty(key) || !KeyRegex.IsMatch(key))
             {
                 throw new ArgumentException($"Invalid puzzle key \"{key}\"");
             }
