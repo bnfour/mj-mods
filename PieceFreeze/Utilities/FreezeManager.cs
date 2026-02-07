@@ -50,6 +50,7 @@ internal static class FreezeManager
         if (locked)
         {
             Highlight(model, UnityEngine.Color.red);
+            SoundTable2.Instance.PlaySE(SoundTable2.SE.Select);
         }
 
         return locked;
@@ -77,6 +78,7 @@ internal static class FreezeManager
         lockedPieces.Add(pieceName);
 
         Highlight(model, UnityEngine.Color.cyan);
+        SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
 
         foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
@@ -95,6 +97,7 @@ internal static class FreezeManager
         lockedPieces.Remove(pieceName);
 
         Highlight(model, UnityEngine.Color.magenta);
+        SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
 
         foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
