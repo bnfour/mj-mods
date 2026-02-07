@@ -20,23 +20,37 @@ internal class DataStorage
 
     private Dictionary<string, HashSet<string>> _backend;
 
+    private string CurrentKey
+    {
+        get
+        {
+            var key = GameManager.Instance.puzzleMainInfo.databaseId;
+
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ApplicationException("No database id set yet. Is the puzzle loaded?");
+            }
+
+            return key;
+        }
+    }
+
     internal HashSet<string> Current
     {
         get
         {
-            // TODO actual id of current puzzle
-            if (!_backend.ContainsKey("xdd"))
+            if (!_backend.ContainsKey(CurrentKey))
             {
-                _backend["xdd"] = new();
+                _backend[CurrentKey] = new();
             }
-            return _backend["xdd"];
+            return _backend[CurrentKey];
         }
     }
 
     // TODO find where to plug it on puzzle reset
     internal void ResetCurrent()
     {
-        _backend.Remove("xdd");
+        _backend.Remove(CurrentKey);
     }
 
     internal void Save()

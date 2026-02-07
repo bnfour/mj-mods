@@ -11,7 +11,7 @@ public class PieceFreezeMod : MelonMod
 
     internal bool FreezeModifierDown { get; private set; }
 
-    // TODO make configurable?
+    // TODO make configurable? extend to rAlt as well?
     private const KeyCode ModifierKey = KeyCode.LeftAlt;
 
     public override void OnInitializeMelon()
