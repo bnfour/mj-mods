@@ -48,10 +48,12 @@ internal class DataStorage
         }
     }
 
-    // TODO find where to plug it on puzzle reset
     internal void ResetCurrent()
     {
-        _backend.Remove(CurrentKey);
+        if (_backend.ContainsKey(CurrentKey))
+        {
+            _backend.Remove(CurrentKey);
+        }
     }
 
     internal void Save()
