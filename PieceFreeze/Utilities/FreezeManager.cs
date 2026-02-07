@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using HarmonyLib;
 using MelonLoader;
 
 using Jigsaw.Piece;
@@ -45,7 +46,13 @@ internal static class FreezeManager
             return true;
         }
 
-        return mod.LockedData.Current.Contains(model.gameObject.name);
+        var locked = mod.LockedData.Current.Contains(model.gameObject.name);
+        if (locked)
+        {
+            Highlight(model, UnityEngine.Color.red);
+        }
+
+        return locked;
     }
 
     /// <summary>
@@ -69,6 +76,8 @@ internal static class FreezeManager
         Debug.Assert(!lockedPieces.Contains(pieceName), "locking a locked piece");
         lockedPieces.Add(pieceName);
 
+        Highlight(model, UnityEngine.Color.cyan);
+
         foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
             if (model.Link[i] != null && !lockedPieces.Contains(model.Link[i].gameObject.name))
@@ -84,6 +93,8 @@ internal static class FreezeManager
 
         Debug.Assert(lockedPieces.Contains(pieceName), "unlocking non-locked piece");
         lockedPieces.Remove(pieceName);
+
+        Highlight(model, UnityEngine.Color.magenta);
 
         foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
@@ -118,5 +129,15 @@ internal static class FreezeManager
             }
         }
         return false;
+    }
+
+    private static void Highlight(Model model, UnityEngine.Color color)
+    {
+        var dockingMaterial = Traverse.Create(model).Field("matDocking");
+        dockingMaterial.Method("SetColor", "_EmissionColor", color).GetValue();
+
+        model.Docking();
+
+        dockingMaterial.Method("SetColor", "_EmissionColor", UnityEngine.Color.white).GetValue();
     }
 }
