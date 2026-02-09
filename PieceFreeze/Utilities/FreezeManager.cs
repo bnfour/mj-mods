@@ -5,6 +5,7 @@ using HarmonyLib;
 using MelonLoader;
 
 using Jigsaw.Piece;
+using System.Linq;
 
 namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
 
@@ -13,6 +14,8 @@ namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
 
 internal static class FreezeManager
 {
+    private static readonly int[] LinkIndices = [.. Enum.GetValues(typeof(Model.LINKPOS)).Cast<int>()];
+
     /// <summary>
     /// Checks if the piece user tries to interact with is frozen.
     /// </summary>
@@ -83,7 +86,7 @@ internal static class FreezeManager
             SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
         }
 
-        foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
+        foreach (int i in LinkIndices)
         {
             if (model.Link[i] != null && !lockedPieces.Contains(model.Link[i].gameObject.name))
             {
@@ -102,7 +105,7 @@ internal static class FreezeManager
         Highlight(model, UnityEngine.Color.magenta);
         SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
 
-        foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
+        foreach (int i in LinkIndices)
         {
             if (model.Link[i] != null && lockedPieces.Contains(model.Link[i].gameObject.name))
             {
@@ -124,7 +127,7 @@ internal static class FreezeManager
 
         alreadyChecked.Add(pieceName);
 
-        foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
+        foreach (int i in LinkIndices)
         {
             if (model.Link[i] != null && !alreadyChecked.Contains(model.Link[i].gameObject.name))
             {
