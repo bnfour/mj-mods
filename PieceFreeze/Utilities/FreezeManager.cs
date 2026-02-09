@@ -66,11 +66,11 @@ internal static class FreezeManager
         var lockedPieces = Melon<PieceFreezeMod>.Instance.LockedData.Current;
         if (IsConnectedToAnyLockedNow(lockedPieces, model))
         {
-            Lock(lockedPieces, model);
+            Lock(lockedPieces, model, true);
         }
     }
 
-    private static void Lock(HashSet<string> lockedPieces, Model model)
+    private static void Lock(HashSet<string> lockedPieces, Model model, bool isDocking = false)
     {
         var pieceName = model.gameObject.name;
 
@@ -78,7 +78,10 @@ internal static class FreezeManager
         lockedPieces.Add(pieceName);
 
         Highlight(model, UnityEngine.Color.cyan);
-        SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
+        if (!isDocking)
+        {
+            SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
+        }
 
         foreach (int i in Enum.GetValues(typeof(Model.LINKPOS)))
         {
