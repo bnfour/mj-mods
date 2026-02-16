@@ -11,13 +11,21 @@ public class PieceFreezeMod : MelonMod
 
     internal bool FreezeModifierDown => _lAltDown || _rAltDown || _altGrDown;
 
+    internal bool EnableSound => _enableSound.Value;
+
     private bool _lAltDown;
     private bool _rAltDown;
     private bool _altGrDown;
 
+    private MelonPreferences_Category _preferencesCategory;
+    private MelonPreferences_Entry<bool> _enableSound;
+
     public override void OnInitializeMelon()
     {
         LockedData.Load();
+
+        _preferencesCategory = MelonPreferences.CreateCategory("Bnfour_PieceFreeze");
+        _enableSound = _preferencesCategory.CreateEntry("Sounds", true, "Sounds", "Play sounds on pieces (un)locking.");
     }
 
     public override void OnUpdate()

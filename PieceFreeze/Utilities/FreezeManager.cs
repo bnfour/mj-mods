@@ -41,11 +41,11 @@ internal static class FreezeManager
         {
             if (mod.LockedData.Current.Contains(model.gameObject.name))
             {
-                Unlock(mod.LockedData.Current, model);
+                Unlock(mod, model);
             }
             else
             {
-                Lock(mod.LockedData.Current, model);
+                Lock(mod, model);
             }
             // still disallow usual interaction
             return true;
@@ -55,7 +55,10 @@ internal static class FreezeManager
         if (locked)
         {
             Highlight(model, Palette.Locked);
-            SoundTable2.Instance.PlaySE(SoundTable2.SE.Select);
+            if (mod.EnableSound)
+            {
+                SoundTable2.Instance.PlaySE(SoundTable2.SE.Select);
+            }
         }
 
         return locked;
@@ -68,50 +71,53 @@ internal static class FreezeManager
     /// <param name="model">Piece to process.</param>
     internal static void ProcessDocking(Model model)
     {
-        var lockedPieces = Melon<PieceFreezeMod>.Instance.LockedData.Current;
-        if (IsConnectedToAnyLockedNow(lockedPieces, model))
+        var mod = Melon<PieceFreezeMod>.Instance;
+        if (IsConnectedToAnyLockedNow(mod.LockedData.Current, model))
         {
-            Lock(lockedPieces, model, true);
+            Lock(mod, model, true);
         }
     }
 
-    private static void Lock(HashSet<string> lockedPieces, Model model, bool isDocking = false)
+    private static void Lock(PieceFreezeMod modInstance, Model model, bool isDocking = false)
     {
         var pieceName = model.gameObject.name;
 
-        Debug.Assert(!lockedPieces.Contains(pieceName), "locking a locked piece");
-        lockedPieces.Add(pieceName);
+        Debug.Assert(!modInstance.LockedData.Current.Contains(pieceName), "locking a locked piece");
+        modInstance.LockedData.Current.Add(pieceName);
 
         Highlight(model, Palette.Locking);
-        if (!isDocking)
+        if (!isDocking && modInstance.EnableSound)
         {
             SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
         }
 
         foreach (int i in LinkIndices)
         {
-            if (model.Link[i] != null && !lockedPieces.Contains(model.Link[i].gameObject.name))
+            if (model.Link[i] != null && !modInstance.LockedData.Current.Contains(model.Link[i].gameObject.name))
             {
-                Lock(lockedPieces, model.Link[i]);
+                Lock(modInstance, model.Link[i]);
             }
         }
     }
 
-    private static void Unlock(HashSet<string> lockedPieces, Model model)
+    private static void Unlock(PieceFreezeMod modInstance, Model model)
     {
         var pieceName = model.gameObject.name;
 
-        Debug.Assert(lockedPieces.Contains(pieceName), "unlocking non-locked piece");
-        lockedPieces.Remove(pieceName);
+        Debug.Assert(modInstance.LockedData.Current.Contains(pieceName), "unlocking non-locked piece");
+        modInstance.LockedData.Current.Remove(pieceName);
 
         Highlight(model, Palette.Unlocking);
-        SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
+        if (modInstance.EnableSound)
+        {
+            SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
+        }
 
         foreach (int i in LinkIndices)
         {
-            if (model.Link[i] != null && lockedPieces.Contains(model.Link[i].gameObject.name))
+            if (model.Link[i] != null && modInstance.LockedData.Current.Contains(model.Link[i].gameObject.name))
             {
-                Unlock(lockedPieces, model.Link[i]);
+                Unlock(modInstance, model.Link[i]);
             }
         }
     }
