@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using HarmonyLib;
 using MelonLoader;
 
 using Jigsaw.Piece;
-using System.Linq;
+
+using Bnfour.MoeJigsawMods.PieceFreeze.Data;
 
 namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
 
@@ -52,7 +54,7 @@ internal static class FreezeManager
         var locked = mod.LockedData.Current.Contains(model.gameObject.name);
         if (locked)
         {
-            Highlight(model, UnityEngine.Color.red);
+            Highlight(model, Palette.Locked);
             SoundTable2.Instance.PlaySE(SoundTable2.SE.Select);
         }
 
@@ -80,7 +82,7 @@ internal static class FreezeManager
         Debug.Assert(!lockedPieces.Contains(pieceName), "locking a locked piece");
         lockedPieces.Add(pieceName);
 
-        Highlight(model, UnityEngine.Color.cyan);
+        Highlight(model, Palette.Locking);
         if (!isDocking)
         {
             SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
@@ -102,7 +104,7 @@ internal static class FreezeManager
         Debug.Assert(lockedPieces.Contains(pieceName), "unlocking non-locked piece");
         lockedPieces.Remove(pieceName);
 
-        Highlight(model, UnityEngine.Color.magenta);
+        Highlight(model, Palette.Unlocking);
         SoundTable2.Instance.PlaySE(SoundTable2.SE.Focus);
 
         foreach (int i in LinkIndices)
@@ -140,6 +142,7 @@ internal static class FreezeManager
         return false;
     }
 
+    // (ab)uses the docking highlight effect with a custom color
     private static void Highlight(Model model, UnityEngine.Color color)
     {
         var dockingMaterial = Traverse.Create(model).Field("matDocking");
