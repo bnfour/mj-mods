@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using MelonLoader;
 using UnityEngine;
 
+using Bnfour.MoeJigsawMods.PieceFreeze.Data;
+
 namespace Bnfour.MoeJigsawMods.PieceFreeze.Utilities;
 
 /// <summary>
@@ -84,9 +86,9 @@ internal class DataStorage
             {
                 _backend = Deserialize(File.ReadAllText(FullFilePath));
             }
-            catch
+            catch (Exception e)
             {
-                Melon<PieceFreezeMod>.Logger.Warning("Unable to load save state, the file will be overwritten on exit.");
+                Melon<PieceFreezeMod>.Logger.Error($"Unable to load save state{(e is DataLoadException dle ? $": {dle.Message}" : "")}! The file will be overwritten on exit.");
                 _backend = new();
             }
         }
@@ -102,7 +104,6 @@ internal class DataStorage
     
     // every non-empty string except the header is an entry: key|piece_XX_YY,...,piece_WW_ZZ
     
-    // very work in progress
     private string Serialize()
     {
         var sb = new StringBuilder(Header + '\n');
@@ -118,7 +119,6 @@ internal class DataStorage
 
     private Dictionary<string, HashSet<string>> Deserialize(string input)
     {
-        // TODO validate string values? custom exceptions?
         Dictionary<string, HashSet<string>> result = new();
 
         var lines = input.Split('\n');
@@ -127,7 +127,7 @@ internal class DataStorage
 
         if (header != Header)
         {
-            throw new ArgumentException("Missing file header");
+            throw new DataLoadException("missing file header");
         }
 
         foreach (var line in dataLines)
@@ -140,13 +140,13 @@ internal class DataStorage
             var keySplit = line.Split('|');
             if (keySplit.Length != 2)
             {
-                throw new ArgumentException("Unable to separate key and data");
+                throw new DataLoadException("unable to separate key and data");
             }
 
             var key = keySplit.First();
             if (string.IsNullOrEmpty(key) || !KeyRegex.IsMatch(key))
             {
-                throw new ArgumentException($"Invalid puzzle key \"{key}\"");
+                throw new DataLoadException($"invalid puzzle key \"{key}\"");
             }
             result[key] = new();
 
@@ -159,7 +159,7 @@ internal class DataStorage
                 }
                 else
                 {
-                    throw new ArgumentException($"Unable to verify piece name \"{s}\"");
+                    throw new DataLoadException($"invalid piece name \"{s}\"");
                 }
             }
         }
