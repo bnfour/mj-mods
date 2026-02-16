@@ -9,9 +9,11 @@ public class PieceFreezeMod : MelonMod
 {
     internal DataStorage LockedData { get; } = new();
 
-    internal bool FreezeModifierDown { get; private set; }
+    internal bool FreezeModifierDown => _lAltDown || _rAltDown || _altGrDown;
 
-    private const KeyCode ModifierKey = KeyCode.LeftAlt;
+    private bool _lAltDown;
+    private bool _rAltDown;
+    private bool _altGrDown;
 
     public override void OnInitializeMelon()
     {
@@ -20,7 +22,9 @@ public class PieceFreezeMod : MelonMod
 
     public override void OnUpdate()
     {
-        FreezeModifierDown = UpdateKeydownStatus(FreezeModifierDown, ModifierKey);
+        _lAltDown = UpdateKeydownStatus(_lAltDown, KeyCode.LeftAlt);
+        _rAltDown = UpdateKeydownStatus(_lAltDown, KeyCode.RightAlt);
+        _altGrDown = UpdateKeydownStatus(_lAltDown, KeyCode.AltGr);
     }
 
     public override void OnApplicationQuit()
