@@ -92,6 +92,10 @@ TODO video(s?)
 
 Click a piece while holding <kbd>Alt</kbd> (either one works) to toggle the lock state for it and all the other pieces connected to it.
 
+The freeze state per puzzle is stored in `MoeJigsaw_Data/pieces.frz` file (only present when there is data to store). It's a very simple plaintext file, but I don't recommend editing it by hand. If the mod can't load the file for some reason it may or may not provide as an error in the MelonLoader's logs, it will overwrite it on clean game exit.
+
+In case of issues with the lock feature, delete the file.
+
 ### Configuration
 It's possible to disable the sound effects that this mod introduced by default — some vanilla sounds are reused for pieces (un)locking and showing their locked state.
 
