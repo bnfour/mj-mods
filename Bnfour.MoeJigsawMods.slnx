@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AppearanceMemory/AppearanceMemory.csproj" />
   <Project Path="CrisperImages/CrisperImages.csproj" />
+  <Project Path="DeeperZoom/DeeperZoom.csproj" />
   <Project Path="Experimental/Experimental.csproj" />
 </Solution>
