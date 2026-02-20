@@ -16,7 +16,7 @@ The following mods are currently available:
 These mods are all compatible with each other, and can be used in any combination.
 
 ## Appearance memory
-This mod fixes not saving the selection of the background image and the tray color between puzzle screens:
+This mod fixes the selection of the background image and the tray color not being saved between puzzles:
 
 before video
 
@@ -43,9 +43,6 @@ Puzzle image now uses the texture originally used in Gallery mode; puzzle previe
 | --- | --- | --- |
 | Puzzle | TODO | TODO |
 | Preview | TODO | TODO |
-
-TODO optional explanation for the three image sizes?
-
 
 ## Deeper zoom
 This mod enables custom zoom levels for the puzzle and preview image, especially useful for taller (height > width) puzzles. The number of steps between minimum and maximum zoom levels can be adjusted as well.
@@ -108,13 +105,50 @@ Sounds = true
 Set the value to `false` to disable the custom sounds.
 
 # Installation
-just copypaste LULE
+These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.1 Open-Beta of MelonLoader is supported.
+Once you have MelonLoader installed, drop the DLLs of desired mods into the Mods folder. Remove to uninstall.
+
+Rather than downloading these, I suggest (reviewing the source and) building them yourself — this way you'll be sure the mods behave as described. See ["Building from source"](#building-from-source).
+Otherwise, please verify the downloads.
 
 ## Verification
-ditto
+Every published release is accompanied with SHA256 hashes of every DLL. MelonLoader does print these in console when loading mods, but I suggest to verify the hashes before installation.
 
 # Frequently Asked Questions
-the same "questions"?
+TODO actual text for this section
+_(or, more accurately, "I thought you may want to know this")_
+
+### Is this cheating?
+_tl;dr: no_
+
+something about that this is a singleplayer game, why would anyone care about cheating in here
+something about this being purely QoL stuff, not a DLCs unlock
+
+### Will I get banned for using these?
+_tl;dr: no_
+
+something about the game being singleplayer, i guess, see prev
+
+### What about compatibility with other mods?
+<!-- surely they exist Clueless -->
+_tl;dr: ¯\\\_(ツ)\_/¯_
+
+something about i don't know, but some of the mods do transpile the original code, open an issue, i'll see what can be done
+
+### How can I blame you if this breaks my game?
+_tl;dr: no warranties, use at your own risk_
+
+checklist for opening the issue, similar to other repos
+- 0.7.1 loader
+- check without other mods installed, if any Clueless
 
 # Building from source
-just notice it targets really old stuff; net 3.5 was released in 2007 Aware
+This repo is mostly a regular .NET solution. It just targets 32-bit .NET Framework 3.5 in the current year to be compatible with the game. (.NET Framework 3.5 was released in 2007.)
+
+Another thing to note is some referenced libraries are not included because of file size (and licensing, mostly) issues. Your installation of MelonLoader will generate them for you.
+
+Copy everything from `MelonLoader/net35` and `MoeJigsaw_Data/Managed` folders from the game install to the `references` folder of this repo. All the DLLs should be directly into it, no subfolders.
+
+This should cover the local references for all the projects. (Actually, most of the DLLs are not necessary to build the solution, I just don't plan on keeping an accurate and up to date list of required libraries.)
+
+After that, just run `dotnet build`.
