@@ -8,6 +8,7 @@ Unofficial quality of life modifications for the hit video game Moe Jigsaw using
 # Mod list
 The following mods are currently available:
 - [Appearance memory](#appearance-memory) — actually saves the background/tray settings
+- [Crisper images](#crisper-images) — uses higher resolution images for the puzzle and its preview
 
 <!-- These mods are all compatible with each other, and can be used in any combination. -->
 
@@ -31,6 +32,17 @@ Tray = 1
 `Skin` can be set to values 1 through 8; `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:
 <!-- TODO is it needed though? -->
 ![text tool in gimp is still broken -- that's why i do these freehand](readme-images/skin-tray-indexing.webp)
+
+## Crisper images
+This mod switches main in-game images to their higher resolution versions.
+
+Puzzle image now uses the texture originally used in Gallery mode; puzzle preview now uses the texture originally used for the puzzle itself:
+| Image | Before | After |
+| --- | --- | --- |
+| Puzzle | TODO | TODO |
+| Preview | TODO | TODO |
+
+TODO optional explanation for the three image sizes?
 
 # Installation
 just copypaste LULE
