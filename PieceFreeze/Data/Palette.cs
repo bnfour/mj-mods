@@ -8,6 +8,6 @@ namespace Bnfour.MoeJigsawMods.PieceFreeze.Data;
 internal static class Palette
 {
     internal static Color Locked => Color.red;
-    internal static Color Locking => Color.cyan;
-    internal static Color Unlocking => Color.magenta;
+    internal static Color Locking => new(1f, .175f, 0f, 1f);
+    internal static Color Unlocking => Color.green;
 }
