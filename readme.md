@@ -13,7 +13,7 @@ The following mods are currently available:
 - [Pan anywhere](#pan-anywhere) — enables panning on mouse wheel clicks
 - [Piece freeze](#piece-freeze) — allows to lock parts of the puzzle from accidental changes
 
-<!-- These mods are all compatible with each other, and can be used in any combination. -->
+These mods are all compatible with each other, and can be used in any combination.
 
 ## Appearance memory
 This mod fixes not saving the selection of the background image and the tray color between puzzle screens:
@@ -32,8 +32,7 @@ Skin = 1
 Tray = 1
 ```
 
-`Skin` can be set to values 1 through 8; `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:
-<!-- TODO is it needed though? -->
+`Skin` can be set to values 1 through 8; `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:  
 ![text tool in gimp is still broken -- that's why i do these freehand](readme-images/skin-tray-indexing.webp)
 
 ## Crisper images
@@ -49,9 +48,13 @@ TODO optional explanation for the three image sizes?
 
 
 ## Deeper zoom
-This mod enables custom zoom levels for the puzzle and preview image.
+This mod enables custom zoom levels for the puzzle and preview image, especially useful for taller (height > width) puzzles. The number of steps between minimum and maximum zoom levels can be adjusted as well.
 
-TODO before/after table? even videos to showcase steps?
+Compare these images taken at maximum zoom:
+
+| Vanilla (yes, this is the maximum zoom) | Deeper zoom's default config, 2× as deep |
+| --- | --- |
+| ![explain your smolness](readme-images/deeper-zoom-vanilla-for-comparison.webp) | ![in awe at the size of this lad. absolute unit](readme-images/deeper-zoom-actual.webp) |
 
 ### Configuration
 The zoom values can be adjusted via mod's preferences. Launching the game with the mod installed should create the following section in MelonLoader's default preferences file, `UserData/MelonPreferences.cfg`:
