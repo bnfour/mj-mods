@@ -6,9 +6,31 @@ Unofficial quality of life modifications for the hit video game Moe Jigsaw using
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
+The following mods are currently available:
+- [Appearance memory](#appearance-memory) — actually saves the background/tray settings
 
-## Mod 1
-the thing to save bg/tray settings i guess?
+<!-- These mods are all compatible with each other, and can be used in any combination. -->
+
+## Appearance memory
+This mod fixes not saving the selection of the background image and the tray color between puzzle screens:
+
+before video
+
+after video
+
+The settings are saved using MelonLoader's preferences framework, inside the default `UserData/MelonPreferences.cfg` file.
+Running the game with the mod installed should create the following section in the file:
+```toml
+[Bnfour_AppearanceMemory]
+# Index of the background image to use, 1–8.
+Skin = 1
+# Index of the tray color to use, 1–5.
+Tray = 1
+```
+
+`Skin` can be set to values 1 through 8; `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:
+<!-- TODO is it needed though? -->
+![text tool in gimp is still broken -- that's why i do these freehand](readme-images/skin-tray-indexing.webp)
 
 # Installation
 just copypaste LULE
