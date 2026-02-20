@@ -57,13 +57,13 @@ TODO before/after table? even videos to showcase steps?
 The zoom values can be adjusted via mod's preferences. Launching the game with the mod installed should create the following section in MelonLoader's default preferences file, `UserData/MelonPreferences.cfg`:
 ```toml
 [Bnfour_DeeperZoom]
-# Maximum zoom value for the puzzle. 1--10 (float), vanilla default is 1.
+# Maximum zoom value for the puzzle. 1–10 (float), vanilla default is 1.
 MaxScale = 2.0
 # Number of zoom level between minimum and maximum. Inclusive, so can't be less than 2 (max value is 64).
 ZoomSteps = 11
-# Maximum zoom value for the preview image. 2--50 (int), vanilla default is 10.
+# Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10.
 PreviewZoomMax = 10
-# Maximum zoom value for the preview image. 1--49 (int), vanilla default is 4. Should be less than maximum value.
+# Maximum zoom value for the preview image. 1–49 (int), vanilla default is 4. Should be less than maximum value.
 PreviewZoomMin = 4
 ```
 
