@@ -31,8 +31,8 @@ public class PieceFreezeMod : MelonMod
     public override void OnUpdate()
     {
         _lAltDown = UpdateKeydownStatus(_lAltDown, KeyCode.LeftAlt);
-        _rAltDown = UpdateKeydownStatus(_lAltDown, KeyCode.RightAlt);
-        _altGrDown = UpdateKeydownStatus(_lAltDown, KeyCode.AltGr);
+        _rAltDown = UpdateKeydownStatus(_rAltDown, KeyCode.RightAlt);
+        _altGrDown = UpdateKeydownStatus(_altGrDown, KeyCode.AltGr);
     }
 
     public override void OnApplicationQuit()
