@@ -10,6 +10,7 @@ The following mods are currently available:
 - [Appearance memory](#appearance-memory) — actually saves the background/tray settings
 - [Crisper images](#crisper-images) — uses higher resolution images for the puzzle and its preview
 - [Deeper zoom](#deeper-zoom) — customizable zoom levels for the puzzle and preview image
+- [Pan anywhere](#pan-anywhere) — enables panning on mouse wheel clicks
 
 <!-- These mods are all compatible with each other, and can be used in any combination. -->
 
@@ -75,6 +76,13 @@ Please note that some validation is in place:
 (and higher than 50 (not that you'll need it))
 - `PreviewZoomMin` cannot be lower than 1; it is also forced to be less than `PreviewZoomMax`  
 (so yep, no higher than 49)
+
+## Pan anywhere
+This small mod enables dedicated pan mode when the mouse wheel is held, regardless of anything that might be under the cursor.
+
+Can be combined with vanilla pan on left mouse button for panning twice as fast!
+
+This also probably breaks the input replay feature (that I've never encountered, might be debug-only?).
 
 # Installation
 just copypaste LULE

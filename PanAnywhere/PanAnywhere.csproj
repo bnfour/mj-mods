@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup Label="Local references">
+    <!-- currently better known as InputLegacyModule -->
+    <Reference Include="../references/UnityEngine.InputModule.dll" />
+  </ItemGroup>
+</Project>
