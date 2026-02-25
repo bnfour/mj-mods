@@ -81,7 +81,7 @@ Please note that some validation is in place:
 ## Pan anywhere
 This small mod enables dedicated pan mode when the mouse wheel is held, regardless of anything that might be under the cursor.
 
-Can be combined with vanilla pan on left mouse button for panning twice as fast!
+Can be done while dragging a piece!
 
 This also probably breaks the input replay feature (that I've never encountered, might be debug-only?).
 
