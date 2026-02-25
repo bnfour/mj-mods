@@ -44,8 +44,8 @@ This mod switches main in-game images to their higher resolution versions.
 
 Puzzle image now uses the texture originally used in Gallery mode; puzzle preview now uses the texture originally used for the puzzle itself:
 | Image | Before | After |
-| :---: | --- | --- |
-| Puzzle | TODO | TODO |
+| :---: | :---: | :---: |
+| Puzzle<br/>(2× zoom via Deeper zoom) | ![](readme-images/crisper-images-puzzle-before.webp) | ![](readme-images/crisper-images-puzzle-after.webp) |
 | Preview<br/>(maximum zoom level) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
 
 ## Deeper zoom
@@ -54,7 +54,7 @@ This mod enables custom zoom levels for the puzzle and preview image, especially
 Compare these images taken at maximum zoom:
 
 | Vanilla (yes, this is the maximum zoom) | Deeper zoom's default config, 2× as deep |
-| --- | --- |
+| :---: | :---: |
 | ![explain your smolness](readme-images/deeper-zoom-vanilla-for-comparison.webp) | ![in awe at the size of this lad. absolute unit](readme-images/deeper-zoom-actual.webp) |
 
 ### Configuration
