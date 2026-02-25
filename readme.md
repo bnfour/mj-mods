@@ -18,9 +18,13 @@ These mods are all compatible with each other, and can be used in any combinatio
 ## Appearance memory
 This mod fixes the selection of the background image and the tray color not being saved between puzzles:
 
-before video
+Vanilla:
 
-after video
+TODO before video
+
+Appearance memory:
+
+TODO after video
 
 The settings are saved using MelonLoader's preferences framework, inside the default `UserData/MelonPreferences.cfg` file.
 Running the game with the mod installed should create the following section in the file:
