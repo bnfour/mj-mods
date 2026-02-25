@@ -123,32 +123,36 @@ Otherwise, please verify the downloads.
 Every published release is accompanied with SHA256 hashes of every DLL. MelonLoader does print these in console when loading mods, but I suggest to verify the hashes before installation.
 
 # Frequently Asked Questions
-TODO actual text for this section
 _(or, more accurately, "I thought you may want to know this")_
 
 ### Is this cheating?
 _tl;dr: no_
 
-something about that this is a singleplayer game, why would anyone care about cheating in here
-something about this being purely QoL stuff, not a DLCs unlock
+All the mods add convenience fixes/features to the gameplay. There are no features (nor any plans to implement them) to do more questionable stuff like achievements unlock.
+
+Unless you consider any third-party modification of the game as cheating, this is not it.
 
 ### Will I get banned for using these?
 _tl;dr: no_
 
-something about the game being singleplayer, i guess, see prev
+The game is completely singleplayer — why would anyone care about what someone does in (or with) it?
 
 ### What about compatibility with other mods?
 <!-- surely they exist Clueless -->
-_tl;dr: ¯\\\_(ツ)\_/¯_
+_tl;dr: no idea_
 
-something about i don't know, but some of the mods do transpile the original code, open an issue, i'll see what can be done
+Some of the mods use a bit of transpilation, so they might break if other mods transpile the same methods.
 
 ### How can I blame you if this breaks my game?
 _tl;dr: no warranties, use at your own risk_
 
-checklist for opening the issue, similar to other repos
-- 0.7.1 loader
-- check without other mods installed, if any Clueless
+You can always uninstall the mods (and optionally the loader).
+
+Before opening an issue, please check that:
+- you're using supported version of MelonLoader (0.7.1)
+- the issue is caused by one of the mods and goes away when the mod is uninstalled
+- vanilla game is not broken too
+- the issue is not already reported
 
 # Building from source
 This repo is mostly a regular .NET solution. It just targets 32-bit .NET Framework 3.5 in the current year to be compatible with the game. (.NET Framework 3.5 was released in 2007.)
