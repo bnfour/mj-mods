@@ -90,15 +90,20 @@ Can be done while dragging a piece!
 This also probably breaks the input replay feature (that I've never encountered, might be debug-only?).
 
 ## Piece freeze
-This mod allows to lock pieces in place to prevent accidental interactions. Any pieces newly attached to a locked group will become locked too. Locked pieces will flash red on attempts to move or rotate them.
+This mod allows to lock pieces in place to prevent accidental interactions. Locked pieces will flash red on attempts to move or rotate them:
 
-TODO video(s?)
+![still torn between "freeze" and "lock"](readme-images/piece-freeze-lock.avif)
 
-Click a piece while holding <kbd>Alt</kbd> (either one works) to toggle the lock state for it and all the other pieces connected to it.
+Click a piece while holding <kbd>Alt</kbd> (either one works) to toggle the lock state for it and all the other pieces connected to it. Red flash indicates that the piece was locked, green flash indicates unlock.
+
+Any pieces newly attached to a locked group will become locked too:
+
+![i found a pair on the second try, the first one only looked like it'll fit](readme-images/piece-freeze-lock-newly-connected.avif)
 
 The freeze state per puzzle is stored in `MoeJigsaw_Data/pieces.frz` file (only present when there is data to store). It's a very simple plaintext file, but I don't recommend editing it by hand. If the mod can't load the file for some reason it may or may not provide as an error in the MelonLoader's logs, it will overwrite it on clean game exit.
 
-In case of issues with the lock feature, delete the file.
+>[!TIP]
+>In case of issues with the lock feature, delete the save file.
 
 ### Configuration
 It's possible to disable the sound effects that this mod introduced by default — some vanilla sounds are reused for pieces (un)locking and showing their locked state.
