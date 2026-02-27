@@ -20,11 +20,11 @@ This mod fixes the selection of the background image and the tray color not bein
 
 Vanilla:
 
-TODO before video
+https://github.com/user-attachments/assets/79c161c2-6a2b-44cb-b621-22235e868a8e
 
 Appearance memory:
 
-TODO after video
+https://github.com/user-attachments/assets/03f0ba99-a9c5-45c1-b633-8be8632e0f08
 
 The settings are saved using MelonLoader's preferences framework, inside the default `UserData/MelonPreferences.cfg` file.
 Running the game with the mod installed should create the following section in the file:
