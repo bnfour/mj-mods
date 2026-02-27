@@ -1,0 +1,5 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup Label="Local references">
+    <Reference Include="../references/UnityEngine.InputModule.dll" />
+  </ItemGroup>
+</Project>
