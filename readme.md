@@ -46,7 +46,7 @@ Puzzle image now uses the texture originally used in Gallery mode; puzzle previe
 | Image | Before | After |
 | :---: | :---: | :---: |
 | Puzzle<br/>(2× zoom via Deeper zoom) | ![](readme-images/crisper-images-puzzle-before.webp) | ![](readme-images/crisper-images-puzzle-after.webp) |
-| Preview<br/>(maximum zoom level) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
+| Preview<br/>(maximum zoom level = original image size) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
 
 ## Deeper zoom
 This mod enables custom zoom levels for the puzzle and preview image, especially useful for taller (height > width) puzzles. The number of steps between minimum and maximum zoom levels can be adjusted as well.
