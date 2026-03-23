@@ -20,12 +20,10 @@ public class JigsawMainMakeMainFramePatch
         var mod = Melon<DeeperZoomMod>.Instance;
 
         ___matScaleMax = mod.MatMaxScale;
-        // workaround for CS1628, something like "can't use a ref var in lambdas"
-        var matScaleMax = ___matScaleMax;
 
         ___baseMatScale = Enumerable.Range(1, mod.ZoomSteps)
             // calculate the zoom scale via lerp just like vanilla code
-            .Select(x => new LemonTuple<int, float>(x, Mathf.Abs(1f - Mathf.Lerp(___matScaleMin, matScaleMax, (float)(x - 1) / (mod.ZoomSteps - 1)))))
+            .Select(x => new LemonTuple<int, float>(x, Mathf.Abs(1f - Mathf.Lerp(___matScaleMin, mod.MatMaxScale, (float)(x - 1) / (mod.ZoomSteps - 1)))))
             // and find the level that provides closest possible zoom to vanilla's default of 1.0 (also the vanilla maximum)
             .OrderBy(t => t.Item2)
             .First().Item1;
