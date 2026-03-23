@@ -65,9 +65,9 @@ The zoom values can be adjusted via mod's preferences. Launching the game with t
 MaxScale = 2.0
 # Number of zoom level between minimum and maximum. Inclusive, so can't be less than 2 (max value is 64).
 ZoomSteps = 11
-# Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10.
+# Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10 (1x). Measured in 10% increments of original texture size.
 PreviewZoomMax = 10
-# Maximum zoom value for the preview image. 1–49 (int), vanilla default is 4. Should be less than maximum value.
+# Minimum zoom value for the preview image. 1–49 (int), vanilla default is 4 (0.4x). Should be less than maximum value.
 PreviewZoomMin = 4
 ```
 
@@ -77,8 +77,10 @@ Please note that some validation is in place:
 (it also cannot be higher than 10.0, but why would you need _that_ much zoom?)
 - `ZoomSteps` cannot be lower than 2 to at least allow switching between minimum and maximum possible scales  
 (64 is a completely arbitrary upper limit)
+- Both `PreviewZoomMax` and `PreviewZoomMin` are measured in 10% parts of the original image's size  
+(1 is 10% of original size, 5 is 50%, 10 is original size, you get the idea)
 - `PreviewZoomMax` cannot be lower than 2 to at least allow two zoom levels  
-(and higher than 50 (not that you'll need it))
+(and higher than 50 (5× the original size; not that you'll need it))
 - `PreviewZoomMin` cannot be lower than 1; it is also forced to be less than `PreviewZoomMax`  
 (so yep, no higher than 49)
 
