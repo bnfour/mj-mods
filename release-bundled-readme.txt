@@ -11,5 +11,6 @@ CrisperImages.dll : replaces puzzle and preview textures with higher resolution 
 DeeperZoom.dll : allows to zoom in more
 PanAnywhere.dll : allows to pan around while holding the middle mouse button
 PieceFreeze.dll : Alt-click pieces to (un)lock them, preventing accidental moves/rotations
+ZoomToCursor.dll : Keeps whatever is under cursor in place while zooming
 
 Licensed under MIT license, no warranty whatsoever.
