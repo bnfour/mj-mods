@@ -12,6 +12,7 @@ The following mods are currently available:
 - [Deeper zoom](#deeper-zoom) — customizable zoom levels for the puzzle and preview image
 - [Pan anywhere](#pan-anywhere) — enables panning on mouse wheel clicks
 - [Piece freeze](#piece-freeze) — allows to lock parts of the puzzle from accidental changes
+- [Zoom to cursor](#zoom-to-cursor) — keeps things under cursor in place while zooming
 
 These mods are all compatible with each other, and can be used in any combination.
 
@@ -118,6 +119,15 @@ Sounds = true
 ```
 
 Set the value to `false` to disable the custom sounds.
+
+## Zoom to cursor
+This small mod adjust the in-game zoom to keep whatever is under the mouse cursor in place (still under the cursor) while zooming the game scene (as long as the game field allows for camera movement — might not work when completely zoomed out):
+
+| Before | After |
+| --- | --- |
+| ![i managed to record a video with variable fps that refused to be encoded into avif and had to retake it](readme-images/zoom-to-cursor-before.avif) | ![this one were encoded twice after i accidentally discovered a way to reduce the size nearly twofold](readme-images/zoom-to-cursor-after.avif) |
+
+For reference, vanilla game always zooms to/from center of the screen.
 
 # Installation
 These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.1 Open-Beta of MelonLoader is supported.
