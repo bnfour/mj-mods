@@ -125,7 +125,7 @@ This small mod adjust the in-game zoom to keep whatever is under the mouse curso
 
 | Before | After |
 | --- | --- |
-| TODO vid | TODO vid |
+| ![i managed to record a video with variable fps that refused to be encoded into avif and had to retake it](readme-images/zoom-to-cursor-before.avif) | ![this one were encoded twice after i accidentally discovered a way to reduce the size nearly twofold](readme-images/zoom-to-cursor-after.avif) |
 
 For reference, vanilla game always zooms to/from center of the screen.
 
