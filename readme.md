@@ -121,16 +121,22 @@ Sounds = true
 Set the value to `false` to disable the custom sounds.
 
 ## Zoom to cursor
-This small mod adjust the in-game zoom to keep whatever is under the mouse cursor in place (still under the cursor) while zooming the game scene (as long as the game field allows for camera movement — might not work when completely zoomed out):
+This small mod adjust the in-game zoom to keep whatever is under the mouse cursor in place (still under the cursor) while zooming the game scene (as long as the game allows the camera movement — might not work when completely zoomed out):
 
 | Before | After |
 | --- | --- |
-| ![i managed to record a video with variable fps that refused to be encoded into avif and had to retake it](readme-images/zoom-to-cursor-before.avif) | ![this one were encoded twice after i accidentally discovered a way to reduce the size nearly twofold](readme-images/zoom-to-cursor-after.avif) |
+| ![i managed to record a video with variable fps that refused to be encoded into avif and had to retake it](readme-images/zoom-to-cursor-before.avif) | ![this one was encoded twice after i accidentally discovered a way to reduce the size nearly twofold](readme-images/zoom-to-cursor-after.avif) |
 
 For reference, vanilla game always zooms to/from center of the screen.
 
 # Installation
 These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.1 Open-Beta of MelonLoader is supported.
+
+>[!TIP]
+>The game is 32 bit, use x86 build of MelonLoader.
+>
+>Versions newer than 0.7.1 did not work (at least for me) with this game, ymmv.
+
 Once you have MelonLoader installed, drop the DLLs of desired mods into the Mods folder. Remove to uninstall.
 
 Rather than downloading these, I suggest (reviewing the source and) building them yourself — this way you'll be sure the mods behave as described. See ["Building from source"](#building-from-source).
@@ -145,7 +151,7 @@ _(or, more accurately, "I thought you may want to know this")_
 ### Is this cheating?
 _tl;dr: no_
 
-All the mods add convenience fixes/features to the gameplay. There are no features (nor any plans to implement them) to do more questionable stuff like achievements unlock.
+All the mods add convenience fixes/features to the gameplay. There are no features (nor any plans to implement any) to do more questionable stuff like achievements unlock.
 
 Unless you consider any third-party modification of the game as cheating, this is not it.
 
@@ -166,13 +172,13 @@ _tl;dr: no warranties, use at your own risk_
 You can always uninstall the mods (and optionally the loader).
 
 Before opening an issue, please check that:
-- you're using supported version of MelonLoader (0.7.1)
+- you're using supported version of MelonLoader (0.7.1 _x86_)
 - the issue is caused by one of the mods and goes away when the mod is uninstalled
 - vanilla game is not broken too
 - the issue is not already reported
 
 # Building from source
-This repo is mostly a regular .NET solution. It just targets 32-bit .NET Framework 3.5 in the current year to be compatible with the game. (.NET Framework 3.5 was released in 2007.)
+This repo is mostly a regular .NET solution. It just targets 32-bit .NET Framework 3.5 in current year to be compatible with the game. (.NET Framework 3.5 was released in 2007.)
 
 Another thing to note is some referenced libraries are not included because of file size (and licensing, mostly) issues. Your installation of MelonLoader will generate them for you.
 
