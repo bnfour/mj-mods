@@ -27,8 +27,8 @@ public class DeeperZoomMod : MelonMod
         "Number of zoom level between minimum and maximum. Inclusive, so can't be less than 2 (max value is 64).", validator: new ValueRange<int>(2, 64));
         // match vanilla by default
         _maximumPreviewZoom = _preferencesCategory.CreateEntry("PreviewZoomMax", 10, "Preview's maximum zoom",
-        "Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10.", validator: new ValueRange<int>(2, 50));
+        "Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10 (1x). Measured in 10% increments of original texture size.", validator: new ValueRange<int>(2, 50));
         _minimumPreviewZoom = _preferencesCategory.CreateEntry("PreviewZoomMin", 4, "Preview's maximum zoom",
-        "Maximum zoom value for the preview image. 1–49 (int), vanilla default is 4. Should be less than maximum value.", validator: new ValueRange<int>(1, 49));
+        "Minimum zoom value for the preview image. 1–49 (int), vanilla default is 4 (0.4x). Should be less than maximum value.", validator: new ValueRange<int>(1, 49));
     }
 }

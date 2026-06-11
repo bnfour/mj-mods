@@ -12,6 +12,7 @@ The following mods are currently available:
 - [Deeper zoom](#deeper-zoom) — customizable zoom levels for the puzzle and preview image
 - [Pan anywhere](#pan-anywhere) — enables panning on mouse wheel clicks
 - [Piece freeze](#piece-freeze) — allows to lock parts of the puzzle from accidental changes
+- [Zoom to cursor](#zoom-to-cursor) — keeps things under cursor in place while zooming
 
 These mods are all compatible with each other, and can be used in any combination.
 
@@ -46,7 +47,7 @@ Puzzle image now uses the texture originally used in Gallery mode; puzzle previe
 | Image | Before | After |
 | :---: | :---: | :---: |
 | Puzzle<br/>(2× zoom via Deeper zoom) | ![](readme-images/crisper-images-puzzle-before.webp) | ![](readme-images/crisper-images-puzzle-after.webp) |
-| Preview<br/>(maximum zoom level) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
+| Preview<br/>(maximum zoom level = original image size) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
 
 ## Deeper zoom
 This mod enables custom zoom levels for the puzzle and preview image, especially useful for taller (height > width) puzzles. The number of steps between minimum and maximum zoom levels can be adjusted as well.
@@ -65,9 +66,9 @@ The zoom values can be adjusted via mod's preferences. Launching the game with t
 MaxScale = 2.0
 # Number of zoom level between minimum and maximum. Inclusive, so can't be less than 2 (max value is 64).
 ZoomSteps = 11
-# Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10.
+# Maximum zoom value for the preview image. 2–50 (int), vanilla default is 10 (1x). Measured in 10% increments of original texture size.
 PreviewZoomMax = 10
-# Maximum zoom value for the preview image. 1–49 (int), vanilla default is 4. Should be less than maximum value.
+# Minimum zoom value for the preview image. 1–49 (int), vanilla default is 4 (0.4x). Should be less than maximum value.
 PreviewZoomMin = 4
 ```
 
@@ -77,8 +78,10 @@ Please note that some validation is in place:
 (it also cannot be higher than 10.0, but why would you need _that_ much zoom?)
 - `ZoomSteps` cannot be lower than 2 to at least allow switching between minimum and maximum possible scales  
 (64 is a completely arbitrary upper limit)
+- Both `PreviewZoomMax` and `PreviewZoomMin` are measured in 10% parts of the original image's size  
+(1 is 10% of original size, 5 is 50%, 10 is original size, you get the idea)
 - `PreviewZoomMax` cannot be lower than 2 to at least allow two zoom levels  
-(and higher than 50 (not that you'll need it))
+(and higher than 50 (5× the original size; not that you'll need it))
 - `PreviewZoomMin` cannot be lower than 1; it is also forced to be less than `PreviewZoomMax`  
 (so yep, no higher than 49)
 
@@ -117,8 +120,23 @@ Sounds = true
 
 Set the value to `false` to disable the custom sounds.
 
+## Zoom to cursor
+This small mod adjust the in-game zoom to keep whatever is under the mouse cursor in place (still under the cursor) while zooming the game scene (as long as the game allows the camera movement — might not work when completely zoomed out):
+
+| Before | After |
+| --- | --- |
+| ![i managed to record a video with variable fps that refused to be encoded into avif and had to retake it](readme-images/zoom-to-cursor-before.avif) | ![this one was encoded twice after i accidentally discovered a way to reduce the size nearly twofold](readme-images/zoom-to-cursor-after.avif) |
+
+For reference, vanilla game always zooms to/from center of the screen.
+
 # Installation
 These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.1 Open-Beta of MelonLoader is supported.
+
+>[!TIP]
+>The game is 32 bit, use x86 build of MelonLoader.
+>
+>Versions newer than 0.7.1 did not work (at least for me) with this game, ymmv.
+
 Once you have MelonLoader installed, drop the DLLs of desired mods into the Mods folder. Remove to uninstall.
 
 Rather than downloading these, I suggest (reviewing the source and) building them yourself — this way you'll be sure the mods behave as described. See ["Building from source"](#building-from-source).
@@ -133,7 +151,7 @@ _(or, more accurately, "I thought you may want to know this")_
 ### Is this cheating?
 _tl;dr: no_
 
-All the mods add convenience fixes/features to the gameplay. There are no features (nor any plans to implement them) to do more questionable stuff like achievements unlock.
+All the mods add convenience fixes/features to the gameplay. There are no features (nor any plans to implement any) to do more questionable stuff like achievements unlock.
 
 Unless you consider any third-party modification of the game as cheating, this is not it.
 
@@ -154,13 +172,13 @@ _tl;dr: no warranties, use at your own risk_
 You can always uninstall the mods (and optionally the loader).
 
 Before opening an issue, please check that:
-- you're using supported version of MelonLoader (0.7.1)
+- you're using supported version of MelonLoader (0.7.1 _x86_)
 - the issue is caused by one of the mods and goes away when the mod is uninstalled
 - vanilla game is not broken too
 - the issue is not already reported
 
 # Building from source
-This repo is mostly a regular .NET solution. It just targets 32-bit .NET Framework 3.5 in the current year to be compatible with the game. (.NET Framework 3.5 was released in 2007.)
+This repo is mostly a regular .NET solution. It just targets 32-bit .NET Framework 3.5 in current year to be compatible with the game. (.NET Framework 3.5 was released in 2007.)
 
 Another thing to note is some referenced libraries are not included because of file size (and licensing, mostly) issues. Your installation of MelonLoader will generate them for you.
 
