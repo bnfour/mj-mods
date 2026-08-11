@@ -19,13 +19,16 @@ internal static class FreezeManager
     private static readonly int[] LinkIndices = [.. Enum.GetValues(typeof(Model.LINKPOS)).Cast<int>()];
 
     /// <summary>
-    /// Checks if the piece user tries to interact with is frozen.
+    /// Checks if the piece user tries to interact with is frozen, and whether the user
+    /// is toggling the freeze mode.
     /// </summary>
     /// <param name="model">Model of the piece user tried to grab or rotate.</param>
     /// <param name="isLeftMouseButton">Whether the left mouse button was used for grabbing
     /// (as opposed to right mouse button or A/D/arrows for rotating).
     /// Used to toggle the state on left-clicking with the modifier held.</param>
     /// <returns>Whether the piece is frozen, and the interaction attempt should be cancelled.</returns>
+    /// <remarks>Called on user interaction, conveys the lock state or lock toggle to
+    /// user via graphical and sound effects.</remarks>
     internal static bool IsFrozen(Model model, bool isLeftMouseButton)
     {
         // only handle pieces lying on the field
@@ -63,6 +66,15 @@ internal static class FreezeManager
 
         return locked;
     }
+
+    /// <summary>
+    /// Just checks if the given piece is frozen, without any side effects.
+    /// </summary>
+    /// <param name="model">Piece to check.</param>
+    /// <returns>True if the piece is frozen, false otherwise.</returns>
+    internal static bool IsFrozen(Model model)
+        => model.Place == Model.PLACE.MAIN
+            && Melon<PieceFreezeMod>.Instance.LockedData.Current.Contains(model.gameObject.name);
 
     /// <summary>
     /// Locks the piece if it's now connected to a locked section.
