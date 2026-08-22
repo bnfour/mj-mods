@@ -44,6 +44,7 @@ public class CustomButtonInjector
                 // texture coords not set because we'll use custom sprites instead of vanilla atlas
                 bi = new()
                 {
+                    filename = $"skin9.pushbox.{data.attr1}",
                     id = data.prevBi.id,
                     bx = data.prevBi.bx + (data.prevBi.bx - data.prevPrevBi.bx),
                     by = data.prevBi.by,
