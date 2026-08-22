@@ -1,8 +1,10 @@
 using MelonLoader;
 
+using Bnfour.MoeJigsawMods.CustomBackground.Utilities;
+
 namespace Bnfour.MoeJigsawMods.CustomBackground;
 
 public class CustomBackgroundMod : MelonMod
 {
-    // soon™
+    internal SpriteProvider spriteProvider = new();
 }

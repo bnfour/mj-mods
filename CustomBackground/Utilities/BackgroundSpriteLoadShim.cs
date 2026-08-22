@@ -1,3 +1,4 @@
+using MelonLoader;
 using UnityEngine;
 
 namespace Bnfour.MoeJigsawMods.CustomBackground.Utilities;
@@ -12,8 +13,7 @@ public static class BackgroundSpriteLoadShim
     {
         if (path == "Images/basesp9")
         {
-            // TODO load custom sprite
-            return Resources.Load<Sprite>("Images/basesp1");
+            return Melon<CustomBackgroundMod>.Instance.spriteProvider.Background;
         }
         return Resources.Load<Sprite>(path);
     }

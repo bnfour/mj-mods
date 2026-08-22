@@ -1,1 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup Label="Resources">
+    <EmbeddedResource Include="Resources/bg-placeholder.png" />
+    <!-- TODO replace with on-the-fly generation from loaded bg -->
+    <EmbeddedResource Include="Resources/normal.png" />
+    <EmbeddedResource Include="Resources/pressed.png" />
+  </ItemGroup>
+
+</Project>
