@@ -85,8 +85,7 @@ internal class SpriteProvider
             using (MemoryStream ms = new())
             {
                 // imagine using .NET Framework 3.5 in current year
-                // 64k is a completely arbitrary buffer size
-                var buffer = new byte[64 * 1024];
+                var buffer = new byte[16 * 1024];
                 int read;
                 while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
                 {
