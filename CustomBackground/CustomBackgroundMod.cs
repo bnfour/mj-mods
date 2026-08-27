@@ -6,5 +6,5 @@ namespace Bnfour.MoeJigsawMods.CustomBackground;
 
 public class CustomBackgroundMod : MelonMod
 {
-    internal SpriteProvider spriteProvider = new();
+    internal readonly SpriteProvider spriteProvider = new();
 }
