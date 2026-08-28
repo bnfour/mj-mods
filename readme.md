@@ -1,5 +1,7 @@
 Unofficial quality of life modifications for the hit video game Moe Jigsaw using MelonLoader.
 
+![the first one i solved actually took me like 15 hours, now i have a bit more than 10 solved under 150 hours total, including mod testing — i do play on hardest difficulty only btw](readme-images/me-irl.webp)
+
 # Disclaimers
 - These mods are unofficial and are not associated with, related to, and/or endorsed by ARES inc.
 - USE AT YOUR OWN RISK. NO WARRANTIES.
