@@ -11,7 +11,7 @@ namespace Bnfour.MoeJigsawMods.CustomBackground.Patches;
 [HarmonyPatch(typeof(JigsawMain), "Start")]
 public class SkinNameExtender
 {
-    internal static void Postfix(ref string[] ___skinNameArray)
+    internal static void Prefix(ref string[] ___skinNameArray)
     {
         ___skinNameArray = [.. ___skinNameArray, "skin9"];
     }
