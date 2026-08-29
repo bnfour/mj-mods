@@ -68,7 +68,7 @@ internal class DataStorage
         // TODO consider doing nothing if the state did not change during the game session
         // (kinda rare outside of just opening/closing the game)
 
-        if (_backend.Count > 0)
+        if (_backend.Count > 0 && _backend.Values.Any(hs => hs.Count > 0))
         {
             File.WriteAllText(FullFilePath, Serialize());
         }
@@ -101,9 +101,9 @@ internal class DataStorage
 
     // so yeah, Newtonsoft.Json is unable to load System.Runtime.Serialization,
     // here we go with a custom "format"
-    
+
     // every non-empty string except the header is an entry: key|piece_XX_YY,...,piece_WW_ZZ
-    
+
     private string Serialize()
     {
         var sb = new StringBuilder(Header + '\n');
