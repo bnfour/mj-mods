@@ -26,6 +26,9 @@ internal class SpriteProvider
 
     private readonly byte[] _rawBg;
 
+    // used to warn/notify the user the default image can be replaced
+    private readonly bool _wasPlaceholderUsed;
+
     // backing fields for lazy loading
 
     private Sprite _background;
@@ -38,20 +41,28 @@ internal class SpriteProvider
 
     internal SpriteProvider()
     {
-        EnsureImageExists();
+        // TODO the naming is meh
+        _wasPlaceholderUsed = EnsureImageExists();
         _rawBg = File.ReadAllBytes(CustomImagePath);
     }
 
-    private void EnsureImageExists()
+    internal void WarnIfNeeded()
+    {
+        if (_wasPlaceholderUsed)
+        {
+            Melon<CustomBackgroundMod>.Logger.Warning($"Custom image not found, writing default fallback to {CustomImagePath}. Replace it with your own image.");
+        }
+    }
+
+    // returns whether the default was written
+    private bool EnsureImageExists()
     {
         if (!File.Exists(CustomImagePath))
         {
-            // TODO the logger is not available at the time this is called,
-            // store an error flag or something
-            // Melon<CustomBackgroundMod>.Logger.Warning($"Custom image not found, writing default fallback to {CustomImagePath}\nReplace it with your own image.");
-
             File.WriteAllBytes(CustomImagePath, LoadRawPngFromAssembly("bg-placeholder.png"));
+            return true;
         }
+        return false;
     }
 
     private byte[] LoadRawPngFromAssembly(string name)
