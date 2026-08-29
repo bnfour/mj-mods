@@ -209,3 +209,5 @@ Copy everything from `MelonLoader/net35` and `MoeJigsaw_Data/Managed` folders fr
 This should cover the local references for all the projects. (Actually, most of the DLLs are not necessary to build the solution, I just don't plan on keeping an accurate and up to date list of required libraries.)
 
 After that, just run `dotnet build`.
+
+There's also a build pipeline similar to my other projects I use to publish new releases.

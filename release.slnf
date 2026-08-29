@@ -1,0 +1,15 @@
+{
+  "solution": {
+    "path": "Bnfour.MoeJigsawMods.slnx",
+    "projects": [
+      "AppearanceMemory/AppearanceMemory.csproj",
+      "CrisperImages/CrisperImages.csproj",
+      "CustomBackground/CustomBackground.csproj",
+      "DeeperZoom/DeeperZoom.csproj",
+      // ¯\_(ツ)_/¯
+      "PanAnywhere/PanAnywhere.csproj",
+      "PieceFreeze/PieceFreeze.csproj",
+      "ZoomToCursor/ZoomToCursor.csproj"
+    ]
+  }
+}
