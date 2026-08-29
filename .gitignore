@@ -2,3 +2,7 @@
 */bin
 references/*
 !references/.gitkeep
+release
+checksums
+notes
+mj-mods-*.zip
