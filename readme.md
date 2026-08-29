@@ -58,9 +58,12 @@ Puzzle image now uses the texture originally used in Gallery mode; puzzle previe
 | Preview<br/>(maximum zoom level = original image size) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
 
 ## Custom background
-This mod adds a 9th button to skin select that changes the background to an arbitrary image (default placeholder shown):
+This mod adds a 9th button to skin select that changes the background to an arbitrary image:
 
-image
+| Image | Overview | Selector detail |
+| :---: | :---: | :---: |
+| Default placeholder<br>(intentionally jarring, screams "replace me") | ![my eyes, ze goggles do nothing](readme-images/custom-bg-default-overwiew.webp) | ![it does show that the thumbnail is scuffed](readme-images/custom-bg-default-detail.webp) |
+| Some example<br>(not included) | ![green is my pepper](readme-images/custom-bg-example-overwiew.webp) | ![i considered making this the default at some point](readme-images/custom-bg-example-detail.webp) |
 
 The image is loaded from `MoeJigsaw_Data/bg.png` file. If it not exists, a default image is written to this path. The original background textures are 1920×1080, so an image with this resolution would work best.
 
