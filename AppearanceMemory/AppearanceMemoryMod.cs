@@ -1,3 +1,4 @@
+using System.Linq;
 using MelonLoader;
 
 using MelonLoader.Preferences;
@@ -24,9 +25,13 @@ public class AppearanceMemoryMod : MelonMod
 
     public override void OnInitializeMelon()
     {
+
+        var customBgPresent = MelonBase.RegisteredMelons.Any(m => m.Info.Author == "bnfour" && m.Info.Name == "Custom background");
+        var skinIdUpperBound = customBgPresent ? 9 : 8;
+
         _category = MelonPreferences.CreateCategory("Bnfour_AppearanceMemory");
-        _skinId = _category.CreateEntry("Skin", 1, "Skin ID", "Index of the background image to use, 1–8.",
-            validator: new ValueRange<int>(1, 8));
+        _skinId = _category.CreateEntry("Skin", 1, "Skin ID", "Index of the background image to use, 1–8. (9 if Custom background is also installed.)",
+            validator: new ValueRange<int>(1, skinIdUpperBound));
         _trayId = _category.CreateEntry("Tray", 1, "Tray ID", "Index of the tray color to use, 1–5.",
             validator: new ValueRange<int>(1, 5));
     }

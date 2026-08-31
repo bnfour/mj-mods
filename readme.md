@@ -1,14 +1,22 @@
 Unofficial quality of life modifications for the hit video game Moe Jigsaw using MelonLoader.
 
+![the first one i solved actually took me like 15 hours, now i have a bit more than 10 solved under 150 hours total, including mod testing — i do play on hardest difficulty only btw](readme-images/me-irl.webp)
+
 # Disclaimers
-- These mods are unofficial and are not associated with, related to, and/or endorsed by ARES inc.
-- USE AT YOUR OWN RISK. NO WARRANTIES.
-- Please read [FAQ](#frequently-asked-questions).
+>[!IMPORTANT]
+>These mods are unofficial and are not associated with, related to, and/or endorsed by ARES inc.
+
+>[!CAUTION]
+>USE AT YOUR OWN RISK. NO WARRANTIES.
+
+>[!TIP]
+>Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
 The following mods are currently available:
 - [Appearance memory](#appearance-memory) — actually saves the background/tray settings
 - [Crisper images](#crisper-images) — uses higher resolution images for the puzzle and its preview
+- [Custom background](#custom-background) — self-explanatory
 - [Deeper zoom](#deeper-zoom) — customizable zoom levels for the puzzle and preview image
 - [Pan anywhere](#pan-anywhere) — enables panning on mouse wheel clicks
 - [Piece freeze](#piece-freeze) — allows to lock parts of the puzzle from accidental changes
@@ -31,13 +39,13 @@ The settings are saved using MelonLoader's preferences framework, inside the def
 Running the game with the mod installed should create the following section in the file:
 ```toml
 [Bnfour_AppearanceMemory]
-# Index of the background image to use, 1–8.
+# Index of the background image to use, 1–8. (9 if Custom background is also installed.)
 Skin = 1
 # Index of the tray color to use, 1–5.
 Tray = 1
 ```
 
-`Skin` can be set to values 1 through 8; `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:  
+`Skin` can be set to values 1 through 8 (9 if [Custom background](#custom-background) is also installed); `Tray` can be set to 1 through 5 — matching the in-game display order, left to right:  
 ![text tool in gimp is still broken -- that's why i do these freehand](readme-images/skin-tray-indexing.webp)
 
 ## Crisper images
@@ -48,6 +56,20 @@ Puzzle image now uses the texture originally used in Gallery mode; puzzle previe
 | :---: | :---: | :---: |
 | Puzzle<br/>(2× zoom via Deeper zoom) | ![](readme-images/crisper-images-puzzle-before.webp) | ![](readme-images/crisper-images-puzzle-after.webp) |
 | Preview<br/>(maximum zoom level = original image size) | ![i feel like it's surprisingly hard to convey the effect of this](readme-images/crisper-images-preview-before.webp) | ![i hope it's understandable](readme-images/crisper-images-preview-after.webp) |
+
+## Custom background
+This mod adds a 9th button to skin select that changes the background to an arbitrary image:
+
+| Image | Overview | Selector detail |
+| :---: | :---: | :---: |
+| Default placeholder<br>(intentionally jarring, screams "replace me") | ![my eyes, ze goggles do nothing](readme-images/custom-bg-default-overwiew.webp) | ![it does show that the thumbnail is scuffed](readme-images/custom-bg-default-detail.webp) |
+| Some example<br>(not included) | ![green is my pepper](readme-images/custom-bg-example-overwiew.webp) | ![i considered making this the default at some point](readme-images/custom-bg-example-detail.webp) |
+
+The image is loaded from `MoeJigsaw_Data/bg.png` file. If it not exists, a default image is written to this path. The original background textures are 1920×1080, so an image with this resolution would work best.
+
+The mod will warn you in the console/log when:
+- the replacement image was missing, and the default was used;
+- the replacement image does not match expected resolution.
 
 ## Deeper zoom
 This mod enables custom zoom levels for the puzzle and preview image, especially useful for taller (height > width) puzzles. The number of steps between minimum and maximum zoom levels can be adjusted as well.
@@ -187,3 +209,5 @@ Copy everything from `MelonLoader/net35` and `MoeJigsaw_Data/Managed` folders fr
 This should cover the local references for all the projects. (Actually, most of the DLLs are not necessary to build the solution, I just don't plan on keeping an accurate and up to date list of required libraries.)
 
 After that, just run `dotnet build`.
+
+There's also a build pipeline similar to my other projects I use to publish new releases.

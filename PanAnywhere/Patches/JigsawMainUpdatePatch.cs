@@ -32,7 +32,7 @@ public class JigsawMainUpdatePatch
             ___vCamPos += scale * (InputCapture.GetCursorWorldPos() - mod.DragPosition.Value);
 
             Traverse.Create(__instance).Method("AdjustMatPosition").GetValue();
-            
+
             mod.DragPosition = InputCapture.GetCursorWorldPos();
         }
     }

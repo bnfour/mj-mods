@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup Label="Local references">
     <Reference Include="../references/UnityEngine.InputModule.dll" />
+    <Reference Include="../references/UnityEngine.PhysicsModule.dll" />
   </ItemGroup>
 </Project>
