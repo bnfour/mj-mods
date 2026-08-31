@@ -12,6 +12,6 @@ do
     then
         echo "Not packing $project (configured skip)"
     else
-        cp --verbose "$project/bin/Release/net3.5/$project.dll" release/
+        cp --verbose "$project/bin/Release/net35/$project.dll" release/
     fi
 done
