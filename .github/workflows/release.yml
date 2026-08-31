@@ -31,19 +31,19 @@ jobs:
     - name: Create folder structure
       run: mkdir --verbose release
     - name: Add text assets
-      run: bash build/scripts/text-assets.sh
+      run: bash build/text-assets.sh
     - name: Add mod DLLs
-      run: bash build/scripts/mod-dlls.sh
+      run: bash build/mod-dlls.sh
     - name: Show the resulting asset structure
       run: tree -sh --dirsfirst release/
     - name: Show and store DLL checksums
-      run: bash build/scripts/checksums.sh
+      run: bash build/checksums.sh
     - name: Figure out the release version and archive name
-      run: bash build/scripts/get-version.sh
+      run: bash build/get-version.sh
     - name: Zip the archive
-      run: bash build/scripts/zip.sh
+      run: bash build/zip.sh
     - name: Draft the release notes
-      run: bash build/scripts/notes.sh
+      run: bash build/notes.sh
     - name: Draft the actual release in the repo
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
